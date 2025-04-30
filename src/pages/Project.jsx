@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 
 import Loading from '../layouts/Loading'
 import Container from '../layouts/Container'
-import { func } from "prop-types"
 
 function Project() {
   const { id } = useParams()
