@@ -27,9 +27,9 @@ function NewProject() {
   }
 
     return (
-        <div className="w-[450px] m-auto p-[3em]" >
-            <h1 className="mb-[0.5em]">Criar Projeto</h1>
-            <p className="text-[#7b7b7b]">Crie seu projeto para depois adicionar os serviços</p>
+        <div className="w-[450px] m-auto  border border-[#ccc] p-10 rounded-lg  " >
+            <h1 className=" font-bold text-[2em]">Criar Projeto</h1>
+            <p className="text-[#7b7b7b] ">Crie seu projeto para depois adicionar os serviços</p>
             <ProjectForm handleSubmit={createPost} btnText="Criar projeto"/>
         </div>
     )

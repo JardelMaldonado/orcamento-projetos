@@ -3,12 +3,16 @@ import { useState, useEffect } from "react"
 
 import Loading from '../layouts/Loading'
 import Container from '../layouts/Container'
+import ProjectForm from "../components/ProjectForm"
+import Message from '../layouts/Message'
 
 function Project() {
   const { id } = useParams()
 
   const [project, setProject] = useState([])
   const [showProjectForm, setShowProjectForm] = useState(false)
+  const [message, setMessage] = useState()
+  const [type, setType] = useState()
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,6 +29,29 @@ function Project() {
 
   }, [id])
 
+   function editPost(project) {
+         if(project.budget < project.cost) {
+              setMessage('O orçamento não pode ser menor que o custo do projeto!')
+              setType('error')
+              return false
+         }
+
+         fetch(`http://localhost:5000/projects/${project.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type' : 'application/json',
+          },
+          body: JSON.stringify(project),
+         }).then(resp => resp.json()).then((data) => {
+          
+          setProject(data)
+          setShowProjectForm(false)
+          setMessage('Projeto atualizado!')
+          setType('success')
+
+         }).catch(err => console.log(err))
+   }
+
   function toggleProjectForm() {
 
     setShowProjectForm(!showProjectForm)
@@ -36,6 +63,7 @@ function Project() {
       {project.name ? (
         <div className="p-4 w-full">
           <Container className="flex flex-col w-full" >
+            {message && <Message type={type} msg={message} />}
             <div className="w-full border-b border-[#7a7a7a] mb-[1.2em] pb-[1.2em]">
               <div className="flex justify-between items-center mb-4">
               <h1 className="text-2xl font-bold text-[#ffbb33] bg-[#222] mb-3 p-4">Projeto: {project.name}</h1>
@@ -51,7 +79,7 @@ function Project() {
                 </div>
               ) : (
                 <div className="w-full mt-4">
-                  <p>detalhes do projeto</p>
+                  <ProjectForm handleSubmit={editPost} btnText="Concluir edição" projectData={project}/>
                 </div>
               )}
             </div>

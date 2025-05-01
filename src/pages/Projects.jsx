@@ -34,15 +34,16 @@ function Projects() {
       }, [])
 
       function removeProject(id) {
-
+        setRemoveLoanding(false)
         fetch(`http://localhost:5000/projects/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type' : 'application/json'
           },
-        }).then(resp => resp.json().then(data => {
+        }).then(resp => resp.json().then(() => {
           setProjects(projects.filter((project) => project.id !== id))
           setProjectsMessage('Projeto removido com sucesso!')
+          setRemoveLoanding(true)
         })).catch(err => console.log(err))
       }
   return (
