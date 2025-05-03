@@ -7,7 +7,7 @@ import logo from '../assets/costs_logo.png'
 function NavBar() {
     return (
         <nav className="flex justify-between bg-[#222] p-4">
-            <Container>
+            <Container customClass="flex justify-between items-center">
                 <Link to="/"><img src={logo} alt="Costs" /></Link>
                 <ul className="flex list-none items-center">
                     <li className="text-white hover:text-[#ffbb33] mr-4">

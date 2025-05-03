@@ -13,6 +13,7 @@ function Project() {
   const [showProjectForm, setShowProjectForm] = useState(false)
   const [message, setMessage] = useState()
   const [type, setType] = useState()
+  const [showServiceForm, setShowServiceForm] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,32 +30,40 @@ function Project() {
 
   }, [id])
 
-   function editPost(project) {
-         if(project.budget < project.cost) {
-              setMessage('O orçamento não pode ser menor que o custo do projeto!')
-              setType('error')
-              return false
-         }
+  function editPost(project) {
+    setMessage('')
 
-         fetch(`http://localhost:5000/projects/${project.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type' : 'application/json',
-          },
-          body: JSON.stringify(project),
-         }).then(resp => resp.json()).then((data) => {
-          
-          setProject(data)
-          setShowProjectForm(false)
-          setMessage('Projeto atualizado!')
-          setType('success')
+    if (project.budget < project.cost) {
+      setMessage('O orçamento não pode ser menor que o custo do projeto!')
+      setType('error')
+      return false
+    }
 
-         }).catch(err => console.log(err))
-   }
+    fetch(`http://localhost:5000/projects/${project.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(project),
+    }).then(resp => resp.json()).then((data) => {
+
+      setProject(data)
+      setShowProjectForm(false)
+      setMessage('Projeto atualizado!')
+      setType('success')
+
+    }).catch(err => console.log(err))
+  }
 
   function toggleProjectForm() {
 
     setShowProjectForm(!showProjectForm)
+
+  }
+
+  function toggleServiceForm() {
+
+    setShowServiceForm(!showProjectForm)
 
   }
 
@@ -66,10 +75,10 @@ function Project() {
             {message && <Message type={type} msg={message} />}
             <div className="w-full border-b border-[#7a7a7a] mb-[1.2em] pb-[1.2em]">
               <div className="flex justify-between items-center mb-4">
-              <h1 className="text-2xl font-bold text-[#ffbb33] bg-[#222] mb-3 p-4">Projeto: {project.name}</h1>
-              <button className="bg-[#222] text-[#FFF]  py-[0.5em] px-[0.5em] transition duration-[0.5s] hover:text-[#ffbb33] border-none max-h-40 cursor-pointer" onClick={toggleProjectForm} >
-                {!showProjectForm ? 'Editar projeto' : 'Fechar'}
-              </button>
+                <h1 className="text-2xl font-bold text-[#ffbb33] bg-[#222] mb-3 p-4">Projeto: {project.name}</h1>
+                <button className="bg-[#222] text-[#FFF]  py-[0.5em] px-[0.5em] transition duration-[0.5s] hover:text-[#ffbb33] border-none max-h-40 cursor-pointer" onClick={toggleProjectForm} >
+                  {!showProjectForm ? 'Editar projeto' : 'Fechar'}
+                </button>
               </div>
               {!showProjectForm ? (
                 <div className="w-100 mt-4 space-y-1" >
@@ -79,10 +88,25 @@ function Project() {
                 </div>
               ) : (
                 <div className="w-full mt-4">
-                  <ProjectForm handleSubmit={editPost} btnText="Concluir edição" projectData={project}/>
+                  <ProjectForm handleSubmit={editPost} btnText="Concluir edição" projectData={project} />
                 </div>
               )}
             </div>
+            <div className="w-full border-b mb-[1.5em]  pb-[1.5em] mt-[1em]">
+              <div className="flex justify-between items-center">
+                <h2 className=" font-bold text-[1.5em]">Adicione um serviço:</h2>
+                <button className="bg-[#222] text-[#FFF]  py-[0.5em] px-[0.5em] transition duration-[0.5s] hover:text-[#ffbb33] border-none max-h-40 cursor-pointer" onClick={toggleServiceForm}>
+                  {!showServiceForm ? 'Adicionar serviço' : 'Fechar'}
+                </button>
+              </div>
+              <div>
+                {showServiceForm && <div>Formulario do serviço</div>}
+              </div>
+            </div>
+            <h2 className="font-bold text-[1.5em] mt-[2em]">Serviços</h2>
+            <Container customClass="mt-[1em]">
+              <p>Itens de serviços</p>
+            </Container>
           </Container>
         </div>
       ) : (

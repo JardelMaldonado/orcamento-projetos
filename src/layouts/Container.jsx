@@ -1,9 +1,9 @@
-function Container(props) {
-    return (
-    <div className={`w-full mx-auto px-4 flex justify-between gap-4 ${props.customClass}`}>
-       {props.children}
+function Container({ children, customClass = "" }) {
+  return (
+    <div className={`w-full mx-auto px-4 ${customClass}`}>
+      {children}
     </div>
-    )
+  );
 }
 
-export default Container
+export default Container;
