@@ -34,6 +34,7 @@ function Projects() {
       }, [])
 
       function removeProject(id) {
+        
         setRemoveLoanding(false)
         fetch(`http://localhost:5000/projects/${id}`, {
           method: 'DELETE',
@@ -56,7 +57,7 @@ function Projects() {
       </div>
       {message && <Message type="success" msg={message} />}
       {projectMessage && <Message type="success" msg={projectMessage} />}
-      <Container customClass="justify-start">
+      <Container customClass="justify-between">
         {projects.length > 0 && projects.map((project) => 
           <ProjectCard id={project.id} name={project.name}
           budget={project.budget} category={project.category.name} key={project.id} handleRemove={removeProject} />)}

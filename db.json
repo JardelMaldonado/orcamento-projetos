@@ -1,15 +1,22 @@
 {
   "projects": [
     {
-      "id": "1c13",
+      "id": "9f69",
       "name": "Jardel",
-      "budget": "900000",
+      "budget": "30000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": []
+      "cost": 2000,
+      "services": [
+        {
+          "name": "Jardel",
+          "cost": "2000",
+          "description": "eai",
+          "id": "3a793a94-f86d-48cc-be65-f10f448560e9"
+        }
+      ]
     }
   ],
   "categories": [
