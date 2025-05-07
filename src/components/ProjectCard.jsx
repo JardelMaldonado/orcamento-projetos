@@ -32,7 +32,7 @@ function ProjectCard({id, name, budget, category, handleRemove}) {
             <Link to={`/project/${id}`} className="flex items-center text-[0.9em] py-[0.6em] px-[1em] border border-[#222] text-[#222] hover:bg-[#222] hover:text-[#ffbb33] houver:bg-[#222] transition duration-500 ">
             <BsPencil className="mr-2"/> Editar
             </Link>
-            <button onClick={remove}className="flex items-center text-[0.9em] py-[0.6em] px-[1em] border border-[#222] text-[#222] hover:bg-[#222] hover:text-[#ffbb33] transition duration-500">
+            <button onClick={remove} className="flex items-center text-[0.9em] py-[0.6em] px-[1em] border border-[#222] text-[#222] hover:bg-[#222] hover:text-[#ffbb33] transition duration-500">
                <BsFillTrashFill className="mr-2"/> Excluir 
             </button>
         </div>

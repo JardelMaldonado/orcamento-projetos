@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-import Input from "../Input"
-import SubmitButton from "../SubmitButton"
+import Input from "../components/Input"
+import SubmitButton from "../components/SubmitButton"
 
 function ServiceForm({ handleSubmit, btnText, projectData }) {
 

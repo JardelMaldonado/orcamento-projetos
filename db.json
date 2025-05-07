@@ -8,15 +8,26 @@
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 2000,
+      "cost": 6000,
       "services": [
         {
           "name": "Jardel",
-          "cost": "2000",
-          "description": "eai",
-          "id": "3a793a94-f86d-48cc-be65-f10f448560e9"
+          "cost": "6000",
+          "description": "javascript avancadoo",
+          "id": "f786e3ed-1516-4091-ade0-cd30e9c745fd"
         }
       ]
+    },
+    {
+      "id": "7339",
+      "name": "meu-projeto5",
+      "budget": "300000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
     }
   ],
   "categories": [
